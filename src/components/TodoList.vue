@@ -1,16 +1,18 @@
 <template>
-  <!-- <section>-->
-  <ul>
-    <!-- <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem" class="shadow"> -->
-    <li v-for="(todoItem, index) in propsdata" v-bind:key="index" class="shadow">
-      <i class="checkBtn fa fa-check" aria-hidden="true"></i>
-      {{ todoItem }}
-      <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
+  <section>
+    <transition-group name="list" tag="ul">
+      <!-- <ul> -->
+      <!-- <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem" class="shadow"> -->
+      <li v-for="(todoItem, index) in propsdata" v-bind:key="index" class="shadow">
+        <i class="checkBtn fa fa-check" aria-hidden="true"></i>
+        {{ todoItem }}
+        <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
           <i class="fa fa-trash-o" aria-hidden="true"></i>
         </span>
-    </li>
-  </ul>
-  <!-- </section> -->
+      </li>
+      <!-- </ul> -->
+    </transition-group>
+  </section>
 </template>
 
 <script>
@@ -67,5 +69,23 @@ li {
 .removeBtn {
   margin-left: auto;
   color: #de4343;
+}
+
+.list-item {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.list-move {
+  transition: transform 1s;
+}
+
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translate(30px);
 }
 </style>
